@@ -13,4 +13,13 @@ describe('homepage', function(){
 			done();
 		});
 	});
+	
+	it('should contain one table', function(done){
+		request('http://localhost:3000', function(err, res, body) {
+			//TODO Combine into one test
+			$ = cheerio.load(body);
+			expect($('table').length).to.equal(1);
+			done();
+		})
+	})
 });

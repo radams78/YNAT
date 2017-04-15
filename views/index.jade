@@ -2,4 +2,28 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+
+  h2= "Unbudgeted Time"
+  p= "168 hours"
+
+  table
+    tr
+      th= "Category"
+      th= "Budgeted"
+      th= "Activity"
+      th= "Available"
+    tr
+      td= "Work"
+      td= 0
+      td= 0
+      td= 0
+    tr
+      td= "Home"
+      td= 0
+      td= 0
+      td= 0
+    tr
+      td= "Sleep"
+      td= 0
+      td= 0
+      td= 0
