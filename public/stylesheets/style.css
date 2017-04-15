@@ -1,8 +1,41 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	background-color: mintcream;
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+	color: #00B7FF;
+}
+
+h1 {
+	margin: auto;
+	width: 50%;
+	font-family: "Arial Black", Arial, sans-serif;
+}
+
+h2 {
+	font-family: "Century Gothic", Verdana, sans-serif;
+}
+
+th {
+	border-left: solid;
+	border-bottom: solid;
+}
+
+tr {
+	border-style: solid;
+}
+
+td {
+	border-left: solid;
+	border-bottom: solid;
+	padding: 0 30px 0 30px; 
+}
+
+#titlediv {
+	background-color: lightblue;
+}
+
+#unbudgeted {
+	font-size: large;
 }
