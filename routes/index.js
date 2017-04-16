@@ -16,6 +16,12 @@ function readTimetable(callback) {
 	})
 }
 
+function writeTimetable(timetable) {
+	fs.writeFile(TIMETABLE_FILE, JSON.stringify(timetable), (err) => {
+		//TODO Error handling
+	});
+}
+
 function renderTimetablePage(res, timetable) {
 	res.render('index', {
 		title: TITLE,
@@ -44,12 +50,13 @@ router.get('/', function(req, res) {
 router.put('/', function(req, res) {
 	readTimetable((err, timetable) => {
 		//TODO Error handling
+
 		req.on('data', (buffer) => {
 			addDataToTimetable(timetable, buffer);
 		});
+
 		req.on('end', () => {
-			fs.writeFile(TIMETABLE_FILE, JSON.stringify(timetable), (err) => {
-			});
+			writeTimetable(timetable);
 		});
 	});
 });
