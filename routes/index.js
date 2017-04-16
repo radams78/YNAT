@@ -23,6 +23,14 @@ function renderTimetablePage(res, timetable) {
 		timetable: timetable
 	});
 }
+
+function addDataToTimetable(timetable, buffer) {
+	let newdata = JSON.parse(buffer.toString());
+	for (let category in newdata) {
+		timetable[category] = newdata[category];
+	}
+}
+
 /* GET home page. */
 router.get('/', function(req, res) {
 	readTimetable((err, timetable) => {
@@ -36,12 +44,9 @@ router.get('/', function(req, res) {
 router.put('/', function(req, res) {
 	readTimetable((err, timetable) => {
 		//TODO Error handling
-		req.on('data', (newdatajson) => {
-			let newdata = JSON.parse(newdatajson.toString());
-			for (let category in newdata) {
-				timetable[category] = newdata[category];
-			}
-		})
+		req.on('data', (buffer) => {
+			addDataToTimetable(timetable, buffer);
+		});
 		req.on('end', () => {
 			fs.writeFile(TIMETABLE_FILE, JSON.stringify(timetable), (err) => {
 			});
