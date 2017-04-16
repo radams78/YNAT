@@ -6,17 +6,24 @@ var TIMETABLE_FILE = "./data/timetable.json"
 var TITLE = "You Need a Timetable";
 var HOURS_IN_WEEK = 7 * 24;
 
+function readTimetable(callback) {
+	fs.readFile(TIMETABLE_FILE, 'utf8', function(err, data) {
+		if (err) {
+			callback(err, null);
+		}
+		
+		callback(null, JSON.parse(data));
+	})
+}
+
 /* GET home page. */
 router.get('/', function(req, res) {
-	fs.readFile(TIMETABLE_FILE, 'utf8', function(err, data) {
+	readTimetable((err, timetable) => {
 		if (err) throw err;
-		
-		var timetable = JSON.parse(data);
-		var unbudgeted = HOURS_IN_WEEK;
 		
 		res.render('index', { 
 			title: TITLE,
-			unbudgeted: unbudgeted,
+			unbudgeted: HOURS_IN_WEEK,
 			timetable: timetable
 			});
 	});
@@ -24,8 +31,7 @@ router.get('/', function(req, res) {
 
 /* PUT a value to a category */
 router.put('/', function(req, res) {
-	fs.readFile(TIMETABLE_FILE, 'utf8', (err, data) => {
-		let timetable = JSON.parse(data);
+	readTimetable((err, timetable) => {
 		req.on('data', (newdatajson) => {
 			let newdata = JSON.parse(newdatajson.toString());
 			for (let category in newdata) {
