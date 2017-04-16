@@ -20,14 +20,15 @@ describe('timetable page', () => {
 
 describe('update', () => {
 	it('should update the database after a PUT', (done) => {
-		request.put({url: 'http://localhost:3000', 
-			body:'{"Work": 10}'}, (err, res, body) => {
+		request.post({url: 'http://localhost:3000', 
+			json: {Work: 10}}, (err, res, body) => {
 			fs.readFile('./data/timetable.json', (err, data) => {
+				console.log(data);
 				var timetable = JSON.parse(data);
 				expect(timetable.Work).to.equal(10);
+				done();
 			});
 		});
-		done();
 	});
 });
 

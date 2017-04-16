@@ -7,6 +7,23 @@ block content
 
   p#unbudgeted= "Unbudgeted Time: " + unbudgeted + " hours"
 
+  script(src="javascripts/jquery.js")
+  
+  script.
+   function changeTime(inputBox) {
+      let newData = {};
+      newData[inputBox.id] = inputBox.value;
+      $.ajax({
+        url: '/',
+        type: 'POST',
+        data: newData,
+        failure: function() {alert("Failure");},
+        error: function(jqxhl, err, exc) {alert("Error: ", jqxhl, err, exc);}
+      }).done(function() {
+        location.reload();
+      });
+    }
+
   table
     tr
       th= "Category"
@@ -16,6 +33,7 @@ block content
     each time, category in timetable
       tr
         td= category
-        td= time
+        td
+          input(id=category, type="number", value=time, onchange="changeTime(this);")
         td= 0
         td= time

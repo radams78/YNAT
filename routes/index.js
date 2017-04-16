@@ -7,6 +7,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res) {
+	console.log("GET request");
 	ttableio.readTimetable((err, timetable) => {
 		if (err) throw err;
 		
@@ -14,18 +15,20 @@ router.get('/', function(req, res) {
 	});
 });
 
-/* PUT a value to a category */
-router.put('/', function(req, res) {
-	ttable.readTimetable((err, timetable) => {
+/* POST a value to a category */
+router.post('/', function(req, res) {
+	console.log("POST request");
+	console.log(req.body);
+	console.log(typeof(req.body));
+	ttableio.readTimetable((err, timetable) => {
 		//TODO Error handling
-
-		req.on('data', (buffer) => {
-			ttable.addData(timetable, buffer);
-		});
-
-		req.on('end', () => {
-			ttableio.writeTimetable(timetable);
-		});
+		console.log("Read timetable");
+		ttable.addData(timetable, req.body);
+		console.log("Writing timetable");
+		ttableio.writeTimetable(timetable);
+			
+		res.statusCode = 200;
+		res.end();
 	});
 });
 

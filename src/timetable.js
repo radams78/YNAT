@@ -2,9 +2,9 @@
  * http://usejsdoc.org/
  */
 
-function addData(timetable, buffer) {
-	let newdata = JSON.parse(buffer.toString());
+function addData(timetable, newdata) {
 	for (let category in newdata) {
+		console.log("Adding " , category, " = ", newdata[category]);
 		timetable[category] = newdata[category];
 	}
 }
