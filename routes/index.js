@@ -19,12 +19,10 @@ router.get('/', function(req, res) {
 router.post('/', function(req, res) {
 	console.log("POST request");
 	console.log(req.body);
-	console.log(typeof(req.body));
 	ttableio.readTimetable((err, timetable) => {
 		//TODO Error handling
-		console.log("Read timetable");
+		
 		ttable.addData(timetable, req.body);
-		console.log("Writing timetable");
 		ttableio.writeTimetable(timetable);
 			
 		res.statusCode = 200;
