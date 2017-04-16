@@ -1,20 +1,12 @@
 var express = require('express');
 var fs = require('fs');
+var ttable = require('../src/timetable');
+
 var router = express.Router();
 
 var TIMETABLE_FILE = "./data/timetable.json"
 var TITLE = "You Need a Timetable";
 var HOURS_IN_WEEK = 7 * 24;
-
-function readTimetable(callback) {
-	fs.readFile(TIMETABLE_FILE, 'utf8', function(err, data) {
-		if (err) {
-			callback(err, null);
-		}
-		
-		callback(null, JSON.parse(data));
-	})
-}
 
 function writeTimetable(timetable) {
 	fs.writeFile(TIMETABLE_FILE, JSON.stringify(timetable), (err) => {
@@ -39,7 +31,7 @@ function addDataToTimetable(timetable, buffer) {
 
 /* GET home page. */
 router.get('/', function(req, res) {
-	readTimetable((err, timetable) => {
+	ttable.readTimetable((err, timetable) => {
 		if (err) throw err;
 		
 		renderTimetablePage(res, timetable);
@@ -48,7 +40,7 @@ router.get('/', function(req, res) {
 
 /* PUT a value to a category */
 router.put('/', function(req, res) {
-	readTimetable((err, timetable) => {
+	ttable.readTimetable((err, timetable) => {
 		//TODO Error handling
 
 		req.on('data', (buffer) => {
