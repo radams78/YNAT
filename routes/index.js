@@ -16,22 +16,26 @@ function readTimetable(callback) {
 	})
 }
 
+function renderTimetablePage(res, timetable) {
+	res.render('index', {
+		title: TITLE,
+		unbudgeted: HOURS_IN_WEEK,
+		timetable: timetable
+	});
+}
 /* GET home page. */
 router.get('/', function(req, res) {
 	readTimetable((err, timetable) => {
 		if (err) throw err;
 		
-		res.render('index', { 
-			title: TITLE,
-			unbudgeted: HOURS_IN_WEEK,
-			timetable: timetable
-			});
+		renderTimetablePage(res, timetable);
 	});
 });
 
 /* PUT a value to a category */
 router.put('/', function(req, res) {
 	readTimetable((err, timetable) => {
+		//TODO Error handling
 		req.on('data', (newdatajson) => {
 			let newdata = JSON.parse(newdatajson.toString());
 			for (let category in newdata) {
