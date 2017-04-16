@@ -5,7 +5,7 @@ block content
   div#titlediv
     h1= title
 
-  p#unbudgeted Unbudgeted Time: 168 hours
+  p#unbudgeted= "Unbudgeted Time: " + unbudgeted + " hours"
 
   table
     tr
@@ -13,18 +13,9 @@ block content
       th= "Budgeted"
       th= "Activity"
       th= "Available"
-    tr
-      td= "Work"
-      td= 0
-      td= 0
-      td= 0
-    tr
-      td= "Home"
-      td= 0
-      td= 0
-      td= 0
-    tr
-      td= "Sleep"
-      td= 0
-      td= 0
-      td= 0
+    each time, category in timetable
+      tr
+        td= category
+        td= time
+        td= 0
+        td= time
