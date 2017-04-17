@@ -17,12 +17,16 @@ class Timetable {
 	constructor () {
 		this.timetable = {};
 	}
+	
+	setCategory(category, time) {
+		this.timetable[category] = time;
+	}
 }
 
 function addData(timetable, newdata) {
 	for (let category in newdata) {
 		console.log("Adding " , category, " = ", newdata[category]);
-		timetable.timetable[category] = newdata[category];
+		timetable.setCategory(category, newdata[category]);
 	}
 }
 
