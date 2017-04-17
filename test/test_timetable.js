@@ -32,6 +32,12 @@ describe('Timetable', () => {
 		done();
 	});
 	
+	it('should throw a TypeError if setCategory is called and time is not a number', (done) => {
+		let ttable = new Timetable({"Work": 10});
+		expect(() => ttable.setCategory("Work", "Not a number")).to.throw(TypeError);
+		done();
+	});
+	
 	it('should allow us to add a value', (done) => {
 		let ttable = new Timetable({});
 		ttable.setCategory("Work", 20);
