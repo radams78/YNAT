@@ -31,7 +31,7 @@ function readTimetable(filename, callback) {
 		let ttable = new timetable.Timetable(JSON.parse(data));
 
 		callback(null, ttable);
-	})
+	});
 }
 
 /**
