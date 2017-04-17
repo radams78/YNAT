@@ -38,6 +38,7 @@ class Timetable {
 		if (typeof(time) !== "number" && ! (time instanceof Number)) {
 			throw new TypeError("Attempt to change tategory in timetable with time of type " + typeof(time));
 		}
+		
 		this.timetable[category] = time;
 	}
 	

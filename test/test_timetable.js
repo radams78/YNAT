@@ -52,6 +52,18 @@ describe('Timetable', () => {
 		done();
 	});
 	
+	it('should throw a TypeError if setCategories is called and newdata is not an Object', (done) => {
+		let ttable = new Timetable({"Work": 10, "Rest": 25});
+		expect(() => ttable.setCategories("Not an Object")).to.throw(TypeError);
+		done();
+	});
+	
+	it('should throw a TypeError if setCategories is called and a value in newdata is not a number', (done) => {
+		let ttable = new Timetable({"Work": 10, "Rest": 25});
+		expect(() => ttable.setCategories({"Work": 20, "Sleep": "Not a Number"})).to.throw(TypeError);
+		done();
+	});
+	
 	it('should allow us to retrieve a JSON representation of the timetable', (done) => {
 		let ttable = new Timetable({"Work": 10, "Rest": 25});
 		expect(ttable.toJSON()).to.equal('{"Work":10,"Rest":25}');
