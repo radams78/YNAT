@@ -2,10 +2,10 @@
  * http://usejsdoc.org/
  */
 
-var cheerio = require('cheerio');
-var expect = require('chai').expect;
-var fs = require('fs');
-var request = require('request');
+const cheerio = require('cheerio');
+const expect = require('chai').expect;
+const fs = require('fs');
+const request = require('request');
 
 describe('timetable page', () => {
 	it('should contain one table', (done) => {
