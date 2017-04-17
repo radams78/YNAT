@@ -11,6 +11,7 @@ describe('Timetable', () => {
 	it('should allow us to construct an empty timetable', (done) => {
 		let ttable = new Timetable();
 		expect(ttable.toObject()).to.eql({});
+		expect(ttable.unbudgeted).to.equal(7 * 24);
 		done();
 	});
 	
@@ -23,6 +24,7 @@ describe('Timetable', () => {
 		let ttable = new Timetable({"Work": 10});
 		ttable.setCategory("Work", 20);
 		expect(ttable.toObject()).to.eql({"Work": 20});
+		expect(ttable.unbudgeted).to.equal(7 * 24 - 20);
 		done();
 	});
 	
@@ -49,6 +51,7 @@ describe('Timetable', () => {
 		let ttable = new Timetable({"Work": 10, "Rest": 25});
 		ttable.setCategories({"Work": 20, "Sleep": 23});
 		expect(ttable.toObject()).to.eql({"Work": 20, "Sleep": 23, "Rest": 25});
+		expect(ttable.unbudgeted).to.equal(7 * 24 - 20 - 23 - 25);
 		done();
 	});
 	
