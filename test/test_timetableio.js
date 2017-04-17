@@ -29,4 +29,12 @@ describe('timetableio', () => {
 			done();
 		});
 	});
+	
+	it('should return an error when reading a file that does not contain valid JSON', (done) => {
+		fs.writeFileSync(TEST_FILE, "Not valid JSON");
+		timetableio.readTimetable(TEST_FILE, (err, ttable) => {
+			expect(err).to.not.be.null;
+			done();
+		})
+	})
 });
