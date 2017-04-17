@@ -1,5 +1,5 @@
 var express = require('express');
-var render = require('../src/render');
+var timetable_page = require('../src/timetable_page');
 var ttableio = require('../src/timetableio');
 var ttable = require('../src/timetable');
 
@@ -11,7 +11,7 @@ router.get('/', function(req, res) {
 	ttableio.readTimetable((err, timetable) => {
 		if (err) throw err;
 		
-		render.renderTimetablePage(res, timetable);
+		timetable_page.render(res, timetable);
 	});
 });
 
