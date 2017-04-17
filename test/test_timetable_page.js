@@ -46,4 +46,9 @@ describe('renderTimetablePage', () => {
 		this.mock_res.assertPageRendered(7 * 24 - 10, {"Work": 10});		
 		done();
 	});
+	
+	it('should throw an exception if res is not a ServerRequest', (done) => {
+		expect(() => timetable_page.render("Not a ServerRequest", new Timetable())).to.throw(Error);
+		done();
+	})
 });
