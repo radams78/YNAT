@@ -10,8 +10,8 @@ class MockResponse {
 	constructor() {	
 	}
 	
-	render(title, data) {
-		this.title = title;
+	render(view, data) {
+		this.view = view;
 		this.data = data;
 	}
 }
@@ -22,11 +22,12 @@ describe('renderTimetablePage', () => {
 		
 		timetable_page.render(mock_res, {});
 		
-		expect(mock_res.title).to.equal('index'); // TDOO Duplication
+		expect(mock_res.view).to.equal(timetable_page.VIEW);
+		
 		console.log(JSON.stringify(mock_res.data));
 		expect(mock_res.data).to.eql({
-			title: timetable_page.TITLE, // TODO Duplication
-			unbudgeted: 168, // TODO Duplication
+			title: timetable_page.TITLE, 
+			unbudgeted: timetable_page.HOURS_IN_WEEK, 
 			timetable: {}
 		});
 		
