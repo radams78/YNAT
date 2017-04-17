@@ -31,7 +31,7 @@ describe('renderTimetablePage', () => {
 		console.log(JSON.stringify(mock_res.data));
 		expect(mock_res.data).to.eql({
 			title: timetable_page.TITLE, 
-			unbudgeted: 7 * 24, 
+			unbudgeted: ttable.HOURS_IN_WEEK, 
 			timetable: {}
 		});
 		
@@ -48,7 +48,7 @@ describe('renderTimetablePage', () => {
 		
 		expect(mock_res.data).to.eql({
 			title: timetable_page.TITLE,
-			unbudgeted: 7 * 24 - 10,
+			unbudgeted: ttable.HOURS_IN_WEEK - 10,
 			timetable: {"Work": 10}
 		});
 		

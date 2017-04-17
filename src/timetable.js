@@ -6,6 +6,8 @@
 
 //TODO Remove global state throughout app
 
+const HOURS_IN_WEEK = 7 * 24;
+
 /**
  * A timetable.  The Model class for the app.
  */
@@ -19,7 +21,7 @@ class Timetable {
 	constructor (initial_data) {
 		this.timetable = (initial_data ? initial_data : {}); 
 	}
-	
+
 	/**
 	 * Add a category, or change the value of a category.
 	 * 
@@ -41,7 +43,7 @@ class Timetable {
 	}
 	
 	getUnbudgeted() {
-		let unbudgeted = 7 * 24;
+		let unbudgeted = HOURS_IN_WEEK;
 		console.log("Unbudgeted: ", unbudgeted);
 		for (let category in this.timetable) {
 			unbudgeted -= this.timetable[category];
@@ -73,4 +75,4 @@ class Timetable {
 	}
 }
 
-module.exports = { Timetable };
+module.exports = { Timetable, HOURS_IN_WEEK };
