@@ -46,9 +46,9 @@ function readTimetable(filename, callback) {
  *    receives any error that occurs during writing.
  */
 //TODO Return the error.
-function writeTimetable(ttable, callback) {
+function writeTimetable(filename, ttable, callback) {
 	console.log("Writing ", ttable.toJSON());
-	fs.writeFile(FILENAME, ttable.toJSON(), (err) => {
+	fs.writeFile(filename, ttable.toJSON(), (err) => {
 		callback(err);
 	});
 }

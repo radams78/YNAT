@@ -38,7 +38,7 @@ router.post('/', function(req, res) {
 		handle_error(res, err, "Error while reading timetable");
 		
 		ttable.setCategories(req.body);
-		timetableio.writeTimetable(ttable, (err) => {
+		timetableio.writeTimetable("./data/timetable.json", ttable, (err) => {
 			handle_error(res, err, "Error while writing timetable");
 			
 			res.statusCode = 200;

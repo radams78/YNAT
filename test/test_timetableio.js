@@ -6,6 +6,7 @@
 
 const expect = require('chai').expect;
 const fs = require('fs');
+const Timetable = require('../src/timetable').Timetable;
 const timetableio = require('../src/timetableio');
 
 const TEST_FILE = "./test_timetable.json";
@@ -45,6 +46,17 @@ describe('timetableio', () => {
 			expect(err).to.not.be.null;
 			fs.unlinkSync(TEST_FILE);
 			done();
+		});
+	});
+	
+	it('should write a timetable then read back the same timetable', (done) => {
+		let ttable = new Timetable({"Work": 20, "Sleep": 10});
+		timetableio.writeTimetable(TEST_FILE, ttable, (err) => {
+			timetableio.readTimetable(TEST_FILE, (err, ttable2) => {
+					expect(ttable2).to.eql(ttable);
+					fs.unlinkSync(TEST_FILE);
+					done();
+			});
 		});
 	});
 });
