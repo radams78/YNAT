@@ -56,7 +56,12 @@ class Timetable {
 		return this.timetable;
 	}
 	
-	getUnbudgeted() {
+	/**
+	 * Returns the amount of time unbudgeted.
+	 * 
+	 * @type Number
+	 */
+	get unbudgeted() {
 		let unbudgeted = HOURS_IN_WEEK;
 		console.log("Unbudgeted: ", unbudgeted);
 		for (let category in this.timetable) {

@@ -38,5 +38,11 @@ describe('Timetable', () => {
 		ttable.setCategories({"Work": 20, "Sleep": 23});
 		expect(ttable.toObject()).to.eql({"Work": 20, "Sleep": 23, "Rest": 25});
 		done();
+	});
+	
+	it('should allow us to retrieve a JSON representation of the timetable', (done) => {
+		let ttable = new Timetable({"Work": 10, "Rest": 25});
+		expect(ttable.toJSON()).to.equal('{"Work":10,"Rest":25}');
+		done();
 	})
 });

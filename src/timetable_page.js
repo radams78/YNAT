@@ -28,7 +28,7 @@ const VIEW = 'timetable_page';
 function render(res, ttable) {
 	res.render(VIEW, {
 		title: TITLE,
-		unbudgeted: ttable.getUnbudgeted(),
+		unbudgeted: ttable.unbudgeted,
 		timetable: ttable.toObject()
 	});
 }
