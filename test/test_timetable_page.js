@@ -1,11 +1,15 @@
 /**
- * http://usejsdoc.org/
+ * Test suite for timetable_page.js
  */
 
 const expect = require('chai').expect;
 
+const ttable = require('../src/timetable');
 const timetable_page = require('../src/timetable_page');
 
+/**
+ * Mock object for http.ServerResponse class
+ */
 class MockResponse {
 	constructor() {	
 	}
@@ -20,7 +24,7 @@ describe('renderTimetablePage', () => {
 	it('should render a simple page when given an empty timetable', (done) => {
 		let mock_res = new MockResponse();
 		
-		timetable_page.render(mock_res, {});
+		timetable_page.render(mock_res, new ttable.Timetable());
 		
 		expect(mock_res.view).to.equal(timetable_page.VIEW);
 		

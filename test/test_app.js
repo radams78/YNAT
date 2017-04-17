@@ -1,5 +1,5 @@
 /**
- * http://usejsdoc.org/
+ * Test suite for app.js
  */
 
 const cheerio = require('cheerio');
@@ -8,6 +8,9 @@ const fs = require('fs');
 const request = require('request');
 const timetableio = require('../src/timetableio')
 
+/**
+ * URL for the server
+ */
 const HOSTURL = "http://localhost:3000";
 
 describe('timetable page', () => {
