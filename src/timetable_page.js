@@ -26,9 +26,14 @@ const VIEW = 'timetable_page';
  * @param timetable {Object} - Timetable to be rendered.  Each category should be a key of timetable, with the number of hours as the associated value
  */
 function render(res, timetable) {
+	let unbudgeted = HOURS_IN_WEEK;
+	for (category in timetable.getTimetable()) {
+		unbudgeted -= timetable.getTimetable()[category];
+	}
+	
 	res.render(VIEW, {
 		title: TITLE,
-		unbudgeted: HOURS_IN_WEEK,
+		unbudgeted: unbudgeted,
 		timetable: timetable.getTimetable()
 	});
 }

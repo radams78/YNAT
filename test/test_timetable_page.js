@@ -37,4 +37,21 @@ describe('renderTimetablePage', () => {
 		
 		done();
 	});
+//TODO Better naming system for modules
+	
+	it('should render the appropriate page when given a timetable with one category', (done) => {
+		let mock_res = new MockResponse();
+		
+		timetable_page.render(mock_res, new ttable.Timetable({"Work": 10}));
+		
+		expect(mock_res.view).to.equal(timetable_page.VIEW);
+		
+		expect(mock_res.data).to.eql({
+			title: timetable_page.TITLE,
+			unbudgeted: timetable_page.HOURS_IN_WEEK - 10,
+			timetable: {"Work": 10}
+		});
+		
+		done();
+	});
 });
