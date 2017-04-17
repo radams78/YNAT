@@ -14,8 +14,8 @@
 //TODO Remove global state
 
 class Timetable {
-	constructor () {
-		this.timetable = {};
+	constructor (initial_data) {
+		this.timetable = (initial_data ? initial_data : {}); 
 	}
 	
 	setCategory(category, time) {

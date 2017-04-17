@@ -20,13 +20,12 @@ const FILENAME = "./data/timetable.json"
  */
 function readTimetable(callback) {
 	fs.readFile(FILENAME, 'utf8', function(err, data) {
-		let ttable = new timetable.Timetable();
-		
 		if (err) {
 			callback(err, null);
 		}
 		
-		ttable.timetable = JSON.parse(data);
+		let ttable = new timetable.Timetable(JSON.parse(data));
+
 		callback(null, ttable);
 	})
 }
