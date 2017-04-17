@@ -8,7 +8,7 @@ const expect = require('chai').expect;
 const Timetable = require('../src/timetable').Timetable;
 
 describe('Timetable', () => {
-	it('should be possible to construct an empty timetable', (done) => {
+	it('should allow us to construct an empty timetable', (done) => {
 		let ttable = new Timetable();
 		expect(ttable.toObject()).to.eql({});
 		done();
@@ -19,4 +19,10 @@ describe('Timetable', () => {
 		done();
 	})
 	
+	it('should allow us to change a value', (done) => {
+		let ttable = new Timetable({"Work": 10});
+		ttable.setCategory("Work", 20);
+		expect(ttable.toObject()).to.eql({"Work": 20});
+		done();
+	})
 });
