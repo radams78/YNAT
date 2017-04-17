@@ -23,7 +23,7 @@ describe('update', () => {
 		request.post({url: 'http://localhost:3000', 
 			json: {Work: 10}}, (err, res, body) => {
 			fs.readFile('./data/timetable.json', (err, data) => {
-				console.log(data);
+				console.log(data.toString());
 				var timetable = JSON.parse(data);
 				expect(timetable.Work).to.equal(10);
 				done();
