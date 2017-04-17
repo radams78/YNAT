@@ -53,10 +53,17 @@ describe('timetableio', () => {
 		let ttable = new Timetable({"Work": 20, "Sleep": 10});
 		timetableio.writeTimetable(TEST_FILE, ttable, (err) => {
 			timetableio.readTimetable(TEST_FILE, (err, ttable2) => {
-					expect(ttable2).to.eql(ttable);
-					fs.unlinkSync(TEST_FILE);
-					done();
+				expect(ttable2).to.eql(ttable);
+				fs.unlinkSync(TEST_FILE);
+				done();
 			});
+		});
+	});
+	
+	it('should return an error when asked to write an object that is not a timetable', (done) => {
+		timetableio.writeTimetable(TEST_FILE, "Not a timetable", (err) => {
+			expect(err).to.not.be.null;
+			done();
 		});
 	});
 });
