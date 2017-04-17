@@ -40,6 +40,17 @@ class Timetable {
 		return this.timetable;
 	}
 	
+	getUnbudgeted() {
+		let unbudgeted = 7 * 24;
+		console.log("Unbudgeted: ", unbudgeted);
+		for (let category in this.timetable) {
+			unbudgeted -= this.timetable[category];
+			console.log("Unbudgeted now: ", unbudgeted);
+		}
+		console.log("Final unbudgeted: ", unbudgeted);
+		return unbudgeted;
+	}
+	
 	/**
 	 * Add or modify several categories.
 	 * 
