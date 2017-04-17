@@ -23,10 +23,12 @@ router.post('/', function(req, res) {
 		//TODO Error handling
 		
 		timetable.addData(req.body);
-		timetableio.writeTimetable(timetable);
+		timetableio.writeTimetable(timetable, (err) => {
+			//TODO Error handling
 			
-		res.statusCode = 200;
-		res.end();
+			res.statusCode = 200;
+			res.end();
+		});
 	});
 });
 

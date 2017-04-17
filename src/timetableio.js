@@ -35,10 +35,10 @@ function readTimetable(callback) {
  * @param timetable {Timetable} - timetable to be written
  */
 //TODO Return the error.
-function writeTimetable(timetable) {
+function writeTimetable(timetable, callback) {
 	console.log("Writing ", timetable.toJSON());
 	fs.writeFile(FILENAME, timetable.toJSON(), (err) => {
-		if (err) {throw err;}
+		callback(err);
 	});
 }
 
