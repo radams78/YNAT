@@ -22,6 +22,10 @@ class Timetable {
 		this.timetable[category] = time;
 	}
 	
+	getTimetable() {
+		return this.timetable;
+	}
+	
 	addData(newdata) {
 		for (let category in newdata) {
 			this.setCategory(category, newdata[category]);

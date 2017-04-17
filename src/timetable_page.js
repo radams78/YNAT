@@ -29,7 +29,7 @@ function render(res, timetable) {
 	res.render(VIEW, {
 		title: TITLE,
 		unbudgeted: HOURS_IN_WEEK,
-		timetable: timetable.timetable
+		timetable: timetable.getTimetable()
 	});
 }
 
