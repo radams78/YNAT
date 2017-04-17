@@ -6,7 +6,7 @@
 
 //TODO Remove global state throughout app
 
-const HOURS_IN_WEEK = 7 * 24;
+const HOURS_IN_WEEK = require('./parameters').HOURS_IN_WEEK;
 
 /**
  * A timetable.  The Model class for the app.

@@ -12,7 +12,7 @@ const TITLE = "You Need A Timetable";
 /**
  * Number of hours in a week
  */
-const HOURS_IN_WEEK = 7 * 24;
+const HOURS_IN_WEEK = require('./parameters').HOURS_IN_WEEK;
 
 /**
  * View to be used when rendering timetable page
