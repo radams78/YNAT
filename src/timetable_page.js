@@ -23,13 +23,13 @@ const VIEW = 'timetable_page';
  * Render the timetable page
  * 
  * @param res {ServerResponse} - Stream to send the rendered page to
- * @param timetable {Object} - Timetable to be rendered.  Each category should be a key of timetable, with the number of hours as the associated value
+ * @param ttable {Timetable} - Timetable to be rendered.
  */
-function render(res, timetable) {
+function render(res, ttable) {
 	res.render(VIEW, {
 		title: TITLE,
-		unbudgeted: timetable.getUnbudgeted(),
-		timetable: timetable.getTimetable()
+		unbudgeted: ttable.getUnbudgeted(),
+		timetable: ttable.toObject()
 	});
 }
 

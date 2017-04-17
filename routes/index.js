@@ -1,7 +1,6 @@
 var express = require('express');
 var timetable_page = require('../src/timetable_page');
 var timetableio = require('../src/timetableio');
-var ttable = require('../src/timetable');
 
 var router = express.Router();
 
@@ -24,10 +23,10 @@ function handle_error(res, err, message) {
 /* GET home page. */
 router.get('/', function(req, res) {
 	console.log("GET request");
-	timetableio.readTimetable((err, timetable) => {
+	timetableio.readTimetable((err, ttable) => {
 		handle_error(res, err, "Error while reading timetable");
 		
-		timetable_page.render(res, timetable);
+		timetable_page.render(res, ttable);
 	});
 });
 
@@ -35,11 +34,11 @@ router.get('/', function(req, res) {
 router.post('/', function(req, res) {
 	console.log("POST request");
 	console.log(req.body);
-	timetableio.readTimetable((err, timetable) => {
+	timetableio.readTimetable((err, ttable) => {
 		handle_error(res, err, "Error while reading timetable");
 		
-		timetable.addData(req.body);
-		timetableio.writeTimetable(timetable, (err) => {
+		ttable.addData(req.body);
+		timetableio.writeTimetable(ttable, (err) => {
 			handle_error(res, err, "Error while writing timetable");
 			
 			res.statusCode = 200;

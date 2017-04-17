@@ -38,7 +38,7 @@ class Timetable {
 	 * @returns Contents of timetable as an object.  Each category is a key in this object, with the number of hours as its value.
 	 * @type Object
 	 */
-	getTimetable() {
+	toObject() {
 		return this.timetable;
 	}
 	

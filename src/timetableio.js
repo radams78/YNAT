@@ -32,12 +32,14 @@ function readTimetable(callback) {
 /**
  * Write the timetable to the database file.  If an error occurs while writing, then the error is thrown.
  * 
- * @param timetable {Timetable} - timetable to be written
+ * @param ttable {Timetable} - timetable to be written
+ * @param callback {function} - code to be executed after writing is complete.  Takes parameter (Error err) which
+ *    receives any error that occurs during writing.
  */
 //TODO Return the error.
-function writeTimetable(timetable, callback) {
-	console.log("Writing ", timetable.toJSON());
-	fs.writeFile(FILENAME, timetable.toJSON(), (err) => {
+function writeTimetable(ttable, callback) {
+	console.log("Writing ", ttable.toJSON());
+	fs.writeFile(FILENAME, ttable.toJSON(), (err) => {
 		callback(err);
 	});
 }

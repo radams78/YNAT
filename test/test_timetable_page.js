@@ -4,7 +4,7 @@
 
 const expect = require('chai').expect;
 
-const ttable = require('../src/timetable');
+const Timetable = require('../src/timetable').Timetable;
 const timetable_page = require('../src/timetable_page');
 
 /**
@@ -18,40 +18,32 @@ class MockResponse {
 		this.view = view;
 		this.data = data;
 	}
+	
+	assertPageRendered(unbudgeted, ttable) {
+		expect(this.view).to.equal(timetable_page.VIEW);
+		expect(this.data).to.eql({
+			title: timetable_page.TITLE,
+			unbudgeted: unbudgeted,
+			timetable: ttable
+		})
+	}
 }
 
 describe('renderTimetablePage', () => {
-	it('should render a simple page when given an empty timetable', (done) => {
-		let mock_res = new MockResponse();
-		
-		timetable_page.render(mock_res, new ttable.Timetable());
-		
-		expect(mock_res.view).to.equal(timetable_page.VIEW);
-		
-		console.log(JSON.stringify(mock_res.data));
-		expect(mock_res.data).to.eql({
-			title: timetable_page.TITLE, 
-			unbudgeted: ttable.HOURS_IN_WEEK, 
-			timetable: {}
-		});
-		
+	before((done) => {
+		this.mock_res = new MockResponse();
 		done();
 	});
-//TODO Better naming system for modules
+	
+	it('should render a simple page when given an empty timetable', (done) => {
+		timetable_page.render(this.mock_res, new Timetable());
+		this.mock_res.assertPageRendered(7 * 24, {});		
+		done();
+	});
 	
 	it('should render the appropriate page when given a timetable with one category', (done) => {
-		let mock_res = new MockResponse();
-		
-		timetable_page.render(mock_res, new ttable.Timetable({"Work": 10}));
-		
-		expect(mock_res.view).to.equal(timetable_page.VIEW);
-		
-		expect(mock_res.data).to.eql({
-			title: timetable_page.TITLE,
-			unbudgeted: ttable.HOURS_IN_WEEK - 10,
-			timetable: {"Work": 10}
-		});
-		
+		timetable_page.render(this.mock_res, new Timetable({"Work": 10}));
+		this.mock_res.assertPageRendered(7 * 24 - 10, {"Work": 10});		
 		done();
 	});
 });
