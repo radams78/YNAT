@@ -29,6 +29,14 @@ describe('Timetable', () => {
 		done();
 	});
 	
+	it('should allow us to change a value using a string', (done) => {
+		let ttable = new Timetable({"Work": 10});
+		ttable.setCategory("Work", "20");
+		expect(ttable.toObject()).to.eql({"Work": 20});
+		expect(ttable.unbudgeted).to.equal(HOURS_IN_WEEK - 20);
+		done();
+	});
+
 	it('should throw a TypeError if setCategory is called and category is not a string', (done) => {
 		let ttable = new Timetable({"Work": 10});
 		expect(() => ttable.setCategory(ttable, 20)).to.throw(TypeError);

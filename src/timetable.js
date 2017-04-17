@@ -36,11 +36,11 @@ class Timetable {
 		if (typeof(category) !== "string" && ! (category instanceof String)) {
 			throw new TypeError("Attempt to change category in timetable with category of type " + typeof(category));
 		}
-		if (typeof(time) !== "number" && ! (time instanceof Number)) {
-			throw new TypeError("Attempt to change tategory in timetable with time of type " + typeof(time));
+		if (isNaN(parseInt(time))) {
+			throw new TypeError("Attempt to change category in timetable with time of type " + typeof(time));
 		}
 		
-		this.timetable[category] = time;
+		this.timetable[category] = parseInt(time);
 	}
 	
 	/**
