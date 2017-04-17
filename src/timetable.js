@@ -32,7 +32,7 @@ class Timetable {
 	 * @param time {Number} - New number of hours
 	 */
 	setCategory(category, time) {
-		if (typeof(category) !== "string") {
+		if (typeof(category) !== "string" && ! (category instanceof String)) {
 			throw new TypeError("Attempt to change category in timetable with category of type " + typeof(category));
 		}
 		
