@@ -36,6 +36,18 @@ class Timetable {
 	}
 	
 	/**
+	 * Add or modify several categories.
+	 * 
+	 * @param newdata {Object} - Categories to be added or modified.  Each category is a key in newdata, with the new number of hours as its value.
+	 */
+	addData(newdata) {
+		for (let category in newdata) {
+			this.setCategory(category, newdata[category]);
+		}
+	}
+	//TODO Rename to setCategories
+	
+	/**
 	 * Returns the contents of the timetable.
 	 * 
 	 * @returns Contents of timetable as an object.  Each category is a key in this object, with the number of hours as its value.
@@ -55,18 +67,7 @@ class Timetable {
 		console.log("Final unbudgeted: ", unbudgeted);
 		return unbudgeted;
 	}
-	
-	/**
-	 * Add or modify several categories.
-	 * 
-	 * @param newdata {Object} - Categories to be added or modified.  Each category is a key in newdata, with the new number of hours as its value.
-	 */
-	addData(newdata) {
-		for (let category in newdata) {
-			this.setCategory(category, newdata[category]);
-		}
-	}
-	
+		
 	/**
 	 * Return a JSON representation of the timetable.
 	 * 

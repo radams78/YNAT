@@ -9,7 +9,8 @@ const Timetable = require('../src/timetable').Timetable;
 
 describe('Timetable', () => {
 	it('should be possible to construct an empty timetable', (done) => {
-		new Timetable();
+		let ttable = new Timetable();
+		expect(ttable.toObject()).to.eql({});
 		done();
 	})
 	
@@ -17,4 +18,5 @@ describe('Timetable', () => {
 		expect(() => new Timetable("Not an Object")).to.throw(TypeError);
 		done();
 	})
+	
 });
