@@ -21,13 +21,12 @@ class Timetable {
 	setCategory(category, time) {
 		this.timetable[category] = time;
 	}
-}
-
-function addData(timetable, newdata) {
-	for (let category in newdata) {
-		console.log("Adding " , category, " = ", newdata[category]);
-		timetable.setCategory(category, newdata[category]);
+	
+	addData(newdata) {
+		for (let category in newdata) {
+			setCategory(category, newdata[category]);
+		}
 	}
 }
 
-module.exports = { Timetable, addData };
+module.exports = { Timetable };

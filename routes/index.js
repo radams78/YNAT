@@ -22,7 +22,7 @@ router.post('/', function(req, res) {
 	timetableio.readTimetable((err, timetable) => {
 		//TODO Error handling
 		
-		ttable.addData(timetable, req.body);
+		timetable.addData(req.body);
 		timetableio.writeTimetable(timetable);
 			
 		res.statusCode = 200;
