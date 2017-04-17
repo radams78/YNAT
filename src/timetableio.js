@@ -2,12 +2,12 @@
  * http://usejsdoc.org/
  */
 
-var fs = require('fs');
+const fs = require('fs');
 
-var TIMETABLE_FILE = "./data/timetable.json"
+const FILENAME = "./data/timetable.json"
 
 function readTimetable(callback) {
-	fs.readFile(TIMETABLE_FILE, 'utf8', function(err, data) {
+	fs.readFile(FILENAME, 'utf8', function(err, data) {
 		if (err) {
 			callback(err, null);
 		}
@@ -17,9 +17,10 @@ function readTimetable(callback) {
 }
 
 function writeTimetable(timetable) {
-	fs.writeFile(TIMETABLE_FILE, JSON.stringify(timetable), (err) => {
-		//TODO Error handling
+	console.log("Writing ", JSON.stringify(timetable));
+	fs.writeFile(FILENAME, JSON.stringify(timetable), (err) => {
+		if (err) {throw err;}
 	});
 }
 
-module.exports = {readTimetable, writeTimetable};
+module.exports = {FILENAME, readTimetable, writeTimetable};
