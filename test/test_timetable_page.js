@@ -19,6 +19,13 @@ class MockResponse {
 		this.data = data;
 	}
 	
+	/**
+	 * Custom assertion that asserts the timetable page has been passed to render
+	 * with the given values for unbudgeted and ttable.
+	 * 
+	 * @param unbudgeted {Number} - Number of hours unbudgeted
+	 * @param ttable {Timetable} - Timetable to be rendered
+	 */
 	assertPageRendered(unbudgeted, ttable) {
 		expect(this.view).to.equal(timetable_page.VIEW);
 		expect(this.data).to.eql({
