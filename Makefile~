@@ -1,0 +1,2 @@
+doc:
+	jsdoc -d=doc src/*.js

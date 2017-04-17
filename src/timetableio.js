@@ -13,10 +13,9 @@ const FILENAME = "./data/timetable.json"
 /**
  * Asynchronously read the timetable from the database file.
  * 
- * @param callback {function} - code to be executed after database loads.  Takes two parameters, err and data.
- * 		If an error occurs while loading the database, then err will contain the error and data will be null.
- *      If the database loads successfully, then err will be null and data will contain the timetable.
- *      Every category in the timetable is a key in data, with the number of hours as the value.
+ * @param callback {function} - code to be executed after database loads.  Takes parameters (String err, Timetable timetable).  
+ * 		If an error occurs while loading the database, then err will contain the error and timetable will be null.
+ *      If the database loads successfully, then err will be null and timetable will contain the timetable.
  */
 function readTimetable(callback) {
 	fs.readFile(FILENAME, 'utf8', function(err, data) {
@@ -33,7 +32,7 @@ function readTimetable(callback) {
 /**
  * Write the timetable to the database file.  If an error occurs while writing, then the error is thrown.
  * 
- * @param timetable {Object} - timetable to be written.  Every category is a key in timetable, with the number of hours as the value.
+ * @param timetable {Timetable} - timetable to be written
  */
 //TODO Return the error.
 function writeTimetable(timetable) {
