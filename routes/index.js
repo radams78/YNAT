@@ -5,16 +5,20 @@ var ttable = require('../src/timetable');
 
 var router = express.Router();
 
+function handle_error(res, err, message) {
+	if (err) {
+		res.render('error', {
+			message: message,
+			error: err
+		});
+	}
+}
+
 /* GET home page. */
 router.get('/', function(req, res) {
 	console.log("GET request");
 	timetableio.readTimetable((err, timetable) => {
-		if (err) {
-			res.render('error', {
-				message: 'Error while reading timetable',
-				error: err
-			})
-		}
+		handle_error(res, err, "Error while reading timetable");
 		
 		timetable_page.render(res, timetable);
 	});
@@ -25,21 +29,11 @@ router.post('/', function(req, res) {
 	console.log("POST request");
 	console.log(req.body);
 	timetableio.readTimetable((err, timetable) => {
-		if (err) {
-			res.render('error', {
-				message: "Error while reading timetable",
-				error: err
-			});
-		}
+		handle_error(res, err, "Error while reading timetable");
 		
 		timetable.addData(req.body);
 		timetableio.writeTimetable(timetable, (err) => {
-			if (err) {
-				res.render('error', {
-					message: "Error while writing timetable",
-					error: err
-				});
-			}
+			handle_error(res, err, "Error while writing timetable");
 			
 			res.statusCode = 200;
 			res.end();
