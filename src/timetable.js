@@ -19,6 +19,9 @@ class Timetable {
 	 *    with the initial number of hours as its value.  May be omitted for an empty timetable.
 	 */
 	constructor (initial_data) {
+		if (initial_data && !(initial_data instanceof Object)) {
+			throw new TypeError("Attempt to build Timetable with initial_data of type " + String(typeof(initial_data)));
+		}
 		this.timetable = (initial_data ? initial_data : {}); 
 	}
 
