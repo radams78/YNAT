@@ -23,7 +23,7 @@ function handle_error(res, err, message) {
 /* GET home page. */
 router.get('/', function(req, res) {
 	console.log("GET request");
-	timetableio.readTimetable((err, ttable) => {
+	timetableio.readTimetable("./data/timetable.json", (err, ttable) => {
 		handle_error(res, err, "Error while reading timetable");
 		
 		timetable_page.render(res, ttable);
@@ -34,7 +34,7 @@ router.get('/', function(req, res) {
 router.post('/', function(req, res) {
 	console.log("POST request");
 	console.log(req.body);
-	timetableio.readTimetable((err, ttable) => {
+	timetableio.readTimetable("./data/timetable.json", (err, ttable) => {
 		handle_error(res, err, "Error while reading timetable");
 		
 		ttable.setCategories(req.body);

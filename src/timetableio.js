@@ -17,10 +17,13 @@ const FILENAME = "./data/timetable.json"
  * 		If an error occurs while loading the database, then err will contain the error and timetable will be null.
  *      If the database loads successfully, then err will be null and timetable will contain the timetable.
  */
-function readTimetable(callback) {
-	fs.readFile(FILENAME, 'utf8', function(err, data) {
+function readTimetable(filename, callback) {
+	fs.readFile(filename, 'utf8', (err, data) => {
+		console.log("Reading file error: ", err);
 		if (err) {
+			console.log("ERROR!");
 			callback(err, null);
+			return;
 		}
 		
 		let ttable = new timetable.Timetable(JSON.parse(data));
