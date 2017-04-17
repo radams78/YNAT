@@ -5,6 +5,13 @@ var ttable = require('../src/timetable');
 
 var router = express.Router();
 
+/**
+ * If err is an error, then display the error page.  Otherwise, do nothing.
+ * 
+ * @param res {http.ServerResponse} - Response stream
+ * @param err {Error} - Error
+ * @param message {String} - Message indicating where the error occurred
+ */
 function handle_error(res, err, message) {
 	if (err) {
 		res.render('error', {
