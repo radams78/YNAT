@@ -10,6 +10,8 @@ const timetable = require('./timetable');
  */
 const FILENAME = "./data/timetable.json"
 
+//TODO Write synchronous versions
+	
 /**
  * Asynchronously read the timetable from the database file.
  * 
