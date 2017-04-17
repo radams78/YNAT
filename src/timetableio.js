@@ -37,8 +37,8 @@ function readTimetable(callback) {
  */
 //TODO Return the error.
 function writeTimetable(timetable) {
-	console.log("Writing ", JSON.stringify(timetable.timetable));
-	fs.writeFile(FILENAME, JSON.stringify(timetable.timetable), (err) => {
+	console.log("Writing ", timetable.toJSON());
+	fs.writeFile(FILENAME, timetable.toJSON(), (err) => {
 		if (err) {throw err;}
 	});
 }

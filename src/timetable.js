@@ -24,8 +24,12 @@ class Timetable {
 	
 	addData(newdata) {
 		for (let category in newdata) {
-			setCategory(category, newdata[category]);
+			this.setCategory(category, newdata[category]);
 		}
+	}
+	
+	toJSON()  {
+		return JSON.stringify(this.timetable);
 	}
 }
 
