@@ -9,7 +9,12 @@ var router = express.Router();
 router.get('/', function(req, res) {
 	console.log("GET request");
 	timetableio.readTimetable((err, timetable) => {
-		if (err) throw err;
+		if (err) {
+			res.render('error', {
+				message: 'Error while reading timetable',
+				error: err
+			})
+		}
 		
 		timetable_page.render(res, timetable);
 	});
@@ -20,11 +25,21 @@ router.post('/', function(req, res) {
 	console.log("POST request");
 	console.log(req.body);
 	timetableio.readTimetable((err, timetable) => {
-		//TODO Error handling
+		if (err) {
+			res.render('error', {
+				message: "Error while reading timetable",
+				error: err
+			});
+		}
 		
 		timetable.addData(req.body);
 		timetableio.writeTimetable(timetable, (err) => {
-			//TODO Error handling
+			if (err) {
+				res.render('error', {
+					message: "Error while writing timetable",
+					error: err
+				});
+			}
 			
 			res.statusCode = 200;
 			res.end();
