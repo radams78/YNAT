@@ -34,7 +34,17 @@ describe('timetableio', () => {
 		fs.writeFileSync(TEST_FILE, "Not valid JSON");
 		timetableio.readTimetable(TEST_FILE, (err, ttable) => {
 			expect(err).to.not.be.null;
+			fs.unlinkSync(TEST_FILE);
 			done();
-		})
-	})
+		});
+	});
+	
+	it('should return an error when reading a file in which a value is not a number', (done) => {
+		fs.writeFileSync(TEST_FILE, '{"Work":10,"Sleep":"Not a number"}');
+		timetableio.readTimetable(TEST_FILE, (err, ttable) => {
+			expect(err).to.not.be.null;
+			fs.unlinkSync(TEST_FILE);
+			done();
+		});
+	});
 });

@@ -22,7 +22,8 @@ class Timetable {
 		if (initial_data && !(initial_data instanceof Object)) {
 			throw new TypeError("Attempt to build Timetable with initial_data of type " + String(typeof(initial_data)));
 		}
-		this.timetable = (initial_data ? initial_data : {}); 
+		this.timetable = {};
+		this.setCategories(initial_data);
 	}
 
 	/**
